@@ -149,60 +149,62 @@ class _CreditCardFormState extends State<CreditCardForm> {
               keyboardType: TextInputType.name,
             ),
           if (widget.divider != null) widget.divider!,
-          Row(
-            children: [
-              Expanded(
-                child: TextInputWidget(
-                  theme: theme,
-                  floatingLabelBehavior: widget.floatingLabelBehavior,
-                  hintText: widget.expiredDateHint ?? 'MM/YY',
-                  labelText: widget.expiredDateLabel,
-                  right: 1,
-                  onChanged: (val) {
-                    setState(() {
-                      params['expired_date'] = val;
-                    });
-                    emitResult();
-                  },
-                  controller: controllers['expired_date'],
-                  formatters: [
-                    FilteringTextInputFormatter.digitsOnly,
-                    CardExpirationFormatter(),
-                    LengthLimitingTextInputFormatter(5)
-                  ],
-                ),
-              ),
-              if (widget.verticalDivider != null) widget.verticalDivider!,
-              Expanded(
-                child: TextInputWidget(
-                  theme: theme,
-                  floatingLabelBehavior: widget.floatingLabelBehavior,
-                  hintText: widget.cvcHint ?? 'CVC',
-                  labelText: widget.cvcLabel,
-                  controller: controllers['cvc'],
-                  password: true,
-                  onChanged: (val) {
-                    setState(() {
-                      params['cvc'] = val;
-                    });
-                    emitResult();
-                  },
-                  formatters: [
-                    FilteringTextInputFormatter.digitsOnly,
-                    LengthLimitingTextInputFormatter(widget.cvcLength)
-                  ],
-                  suffixIcon: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: widget.cvcIcon ??
-                        Image.asset(
-                          'images/cvc.png',
-                          package: 'credit_card_form',
-                          height: 25,
-                        ),
+          IntrinsicHeight(
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextInputWidget(
+                    theme: theme,
+                    floatingLabelBehavior: widget.floatingLabelBehavior,
+                    hintText: widget.expiredDateHint ?? 'MM/YY',
+                    labelText: widget.expiredDateLabel,
+                    right: 1,
+                    onChanged: (val) {
+                      setState(() {
+                        params['expired_date'] = val;
+                      });
+                      emitResult();
+                    },
+                    controller: controllers['expired_date'],
+                    formatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      CardExpirationFormatter(),
+                      LengthLimitingTextInputFormatter(5)
+                    ],
                   ),
                 ),
-              )
-            ],
+                if (widget.verticalDivider != null) widget.verticalDivider!,
+                Expanded(
+                  child: TextInputWidget(
+                    theme: theme,
+                    floatingLabelBehavior: widget.floatingLabelBehavior,
+                    hintText: widget.cvcHint ?? 'CVC',
+                    labelText: widget.cvcLabel,
+                    controller: controllers['cvc'],
+                    password: true,
+                    onChanged: (val) {
+                      setState(() {
+                        params['cvc'] = val;
+                      });
+                      emitResult();
+                    },
+                    formatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      LengthLimitingTextInputFormatter(widget.cvcLength)
+                    ],
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: widget.cvcIcon ??
+                          Image.asset(
+                            'images/cvc.png',
+                            package: 'credit_card_form',
+                            height: 25,
+                          ),
+                    ),
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),
