@@ -9,6 +9,8 @@ class CreditCardDarkTheme implements CreditCardTheme {
   TextStyle textStyle = const TextStyle();
   @override
   TextStyle hintStyle = const TextStyle(color: Colors.white54);
+  @override
+  TextStyle floatingLabelStyle = const TextStyle(color: Colors.white);
 }
 
 class CreditCardLightTheme implements CreditCardTheme {
@@ -20,6 +22,8 @@ class CreditCardLightTheme implements CreditCardTheme {
   TextStyle textStyle = const TextStyle();
   @override
   TextStyle hintStyle = const TextStyle(color: Colors.black54);
+  @override
+  TextStyle floatingLabelStyle = const TextStyle(color: Colors.black);
 }
 
 abstract class CreditCardTheme {
@@ -27,4 +31,5 @@ abstract class CreditCardTheme {
   late Color borderColor;
   late TextStyle textStyle;
   late TextStyle hintStyle;
+  late TextStyle floatingLabelStyle;
 }

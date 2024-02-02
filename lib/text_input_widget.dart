@@ -16,7 +16,7 @@ class TextInputWidget extends StatelessWidget {
   final Function(String)? onChanged;
   final Widget? suffixIcon;
   final TextEditingController? controller;
-  final FloatingLabelAlignment? floatingLabelAlignment;
+  final FloatingLabelBehavior? floatingLabelBehavior;
   final String? labelText;
 
   const TextInputWidget({
@@ -33,7 +33,7 @@ class TextInputWidget extends StatelessWidget {
     this.left = 0,
     this.right = 0,
     this.top = 0,
-    this.floatingLabelAlignment,
+    this.floatingLabelBehavior,
     this.labelText,
   });
 
@@ -68,7 +68,8 @@ class TextInputWidget extends StatelessWidget {
         inputFormatters: formatters ?? [],
         keyboardType: keyboardType ?? TextInputType.number,
         decoration: InputDecoration(
-          floatingLabelAlignment: floatingLabelAlignment,
+          floatingLabelBehavior: floatingLabelBehavior,
+          floatingLabelStyle: theme.floatingLabelStyle,
           suffixIcon: suffixIcon,
           contentPadding: const EdgeInsets.all(15),
           border: InputBorder.none,

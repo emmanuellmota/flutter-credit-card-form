@@ -18,7 +18,7 @@ class CreditCardForm extends StatefulWidget {
   final Function(CreditCardResult) onChanged;
   final CreditCardController? controller;
   final Divider? divider;
-  final FloatingLabelAlignment? floatingLabelAlignment;
+  final FloatingLabelBehavior? floatingLabelBehavior;
   const CreditCardForm({
     super.key,
     this.theme,
@@ -38,7 +38,7 @@ class CreditCardForm extends StatefulWidget {
     this.fontSize = 16,
     this.controller,
     this.divider,
-    this.floatingLabelAlignment,
+    this.floatingLabelBehavior,
   });
 
   @override
@@ -99,7 +99,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
         children: [
           TextInputWidget(
             theme: theme,
-            floatingLabelAlignment: widget.floatingLabelAlignment,
+            floatingLabelBehavior: widget.floatingLabelBehavior,
             controller: controllers['card'],
             hintText: widget.cardNumberHint ?? 'Card number',
             labelText: widget.cardNumberLabel,
@@ -133,7 +133,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
           if (widget.hideCardHolder == false)
             TextInputWidget(
               theme: theme,
-              floatingLabelAlignment: widget.floatingLabelAlignment,
+              floatingLabelBehavior: widget.floatingLabelBehavior,
               hintText: widget.cardHolderHint ?? 'Card holder name',
               labelText: widget.cardHolderLabel,
               controller: controllers['card_holder_name'],
@@ -152,7 +152,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
               Expanded(
                 child: TextInputWidget(
                   theme: theme,
-                  floatingLabelAlignment: widget.floatingLabelAlignment,
+                  floatingLabelBehavior: widget.floatingLabelBehavior,
                   hintText: widget.expiredDateHint ?? 'MM/YY',
                   labelText: widget.expiredDateLabel,
                   right: 1,
@@ -173,7 +173,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
               Expanded(
                 child: TextInputWidget(
                   theme: theme,
-                  floatingLabelAlignment: widget.floatingLabelAlignment,
+                  floatingLabelBehavior: widget.floatingLabelBehavior,
                   hintText: widget.cvcHint ?? 'CVC',
                   labelText: widget.cvcLabel,
                   controller: controllers['cvc'],
