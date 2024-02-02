@@ -18,6 +18,7 @@ class CreditCardForm extends StatefulWidget {
   final Function(CreditCardResult) onChanged;
   final CreditCardController? controller;
   final Divider? divider;
+  final VerticalDivider? verticalDivider;
   final FloatingLabelBehavior? floatingLabelBehavior;
   const CreditCardForm({
     super.key,
@@ -38,6 +39,7 @@ class CreditCardForm extends StatefulWidget {
     this.fontSize = 16,
     this.controller,
     this.divider,
+    this.verticalDivider,
     this.floatingLabelBehavior,
   });
 
@@ -170,6 +172,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
                   ],
                 ),
               ),
+              if (widget.verticalDivider != null) widget.verticalDivider!,
               Expanded(
                 child: TextInputWidget(
                   theme: theme,
