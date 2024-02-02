@@ -60,10 +60,7 @@ class TextInputWidget extends StatelessWidget {
       ),
       child: TextField(
         controller: controller,
-        style: TextStyle(
-          color: theme.textColor,
-          fontSize: fontSize,
-        ),
+        style: theme.textStyle,
         onChanged: onChanged,
         obscureText: password ?? false,
         inputFormatters: formatters ?? [],
@@ -73,10 +70,7 @@ class TextInputWidget extends StatelessWidget {
           contentPadding: const EdgeInsets.all(15),
           border: InputBorder.none,
           hintText: label,
-          hintStyle: TextStyle(
-            color: theme.labelColor,
-            fontSize: fontSize,
-          ),
+          hintStyle: theme.hintStyle,
         ),
       ),
     );

@@ -13,6 +13,7 @@ class CreditCardForm extends StatefulWidget {
   final CreditCardTheme? theme;
   final Function(CreditCardResult) onChanged;
   final CreditCardController? controller;
+  final Divider? divider;
   const CreditCardForm({
     super.key,
     this.theme,
@@ -27,6 +28,7 @@ class CreditCardForm extends StatefulWidget {
     this.cvcLength = 4,
     this.fontSize = 16,
     this.controller,
+    this.divider,
   });
 
   @override
@@ -116,6 +118,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
               ),
             ),
           ),
+          if (widget.divider != null) widget.divider!,
           if (widget.hideCardHolder == false)
             TextInputWidget(
               theme: theme,
@@ -131,6 +134,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
               },
               keyboardType: TextInputType.name,
             ),
+          if (widget.divider != null) widget.divider!,
           Row(
             children: [
               Expanded(
@@ -147,6 +151,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
                   },
                   controller: controllers['expired_date'],
                   formatters: [
+                    FilteringTextInputFormatter.digitsOnly,
                     CardExpirationFormatter(),
                     LengthLimitingTextInputFormatter(5)
                   ],

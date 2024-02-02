@@ -2,29 +2,29 @@ part of credit_card_form;
 
 class CreditCardDarkTheme implements CreditCardTheme {
   @override
-  Color backgroundColor = HexColor('181E28');
+  Color backgroundColor = const Color(0xFF181E28);
   @override
-  Color textColor = HexColor('FFFFFF');
+  Color borderColor = const Color(0xFF232C3B);
   @override
-  Color borderColor = HexColor('232C3B');
+  TextStyle textStyle = const TextStyle();
   @override
-  Color labelColor = HexColor('41546F');
+  TextStyle hintStyle = const TextStyle(color: Colors.white54);
 }
 
 class CreditCardLightTheme implements CreditCardTheme {
   @override
-  Color backgroundColor = HexColor('F9F9F9');
+  Color backgroundColor = const Color(0xFFF9F9F9);
   @override
-  Color textColor = HexColor('242424');
+  Color borderColor = const Color(0xFFe8e8f6);
   @override
-  Color borderColor = HexColor('e8e8f6');
+  TextStyle textStyle = const TextStyle();
   @override
-  Color labelColor = Colors.black45;
+  TextStyle hintStyle = const TextStyle(color: Colors.black54);
 }
 
 abstract class CreditCardTheme {
   late Color backgroundColor;
-  late Color textColor;
   late Color borderColor;
-  late Color labelColor;
+  late TextStyle textStyle;
+  late TextStyle hintStyle;
 }
