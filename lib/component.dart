@@ -147,6 +147,9 @@ class _CreditCardFormState extends State<CreditCardForm> {
                 emitResult();
               },
               keyboardType: TextInputType.name,
+              formatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z ]')),
+              ],
             ),
           if (widget.divider != null) widget.divider!,
           IntrinsicHeight(
