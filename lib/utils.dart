@@ -3,21 +3,45 @@ import 'package:flutter/services.dart';
 
 class CardExpirationFormatter extends TextInputFormatter {
   @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-    final newValueString = newValue.text;
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    final int currentYearFirstDigit = DateTime.now().year % 100 ~/ 10;
+    String newValueString = newValue.text.replaceAll('/', '');
     String valueToReturn = '';
 
-    for (int i = 0; i < newValueString.length; i++) {
-      if (newValueString[i] != '/') valueToReturn += newValueString[i];
-      var nonZeroIndex = i + 1;
-      final contains = valueToReturn.contains(RegExp(r'\/'));
-      if (nonZeroIndex % 2 == 0 &&
-          nonZeroIndex != newValueString.length &&
-          !(contains)) {
+    if (newValueString.length > 4) {
+      newValueString = newValueString.substring(0, 4);
+    }
+
+    for (int i = 0; i < newValueString.length && i < 4; i++) {
+      if (i == 2) {
         valueToReturn += '/';
       }
+
+      if (i == 0) {
+        if (newValueString[i] != '0' && newValueString[i] != '1') {
+          break;
+        }
+      } else if (i == 1) {
+        String month = newValueString.substring(0, 2);
+        int monthInt = int.tryParse(month) ?? 0;
+        if (monthInt == 0 || monthInt > 12) {
+          break;
+        }
+      } else if (i == 2) {
+        int digit = int.tryParse(newValueString[i]) ?? 0;
+        if (digit < currentYearFirstDigit) {
+          break;
+        }
+      } else {
+        int yearInt = int.tryParse(newValueString.substring(2, 4)) ?? 0;
+        if (yearInt < DateTime.now().year % 100) {
+          break;
+        }
+      }
+
+      valueToReturn += newValueString[i];
     }
+
     return newValue.copyWith(
       text: valueToReturn,
       selection: TextSelection.fromPosition(
