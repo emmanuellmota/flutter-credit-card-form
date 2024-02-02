@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class TextInputWidget extends StatelessWidget {
-  final String label;
+  final String hintText;
 
   final CreditCardTheme theme;
   final double left;
@@ -15,14 +15,14 @@ class TextInputWidget extends StatelessWidget {
   final bool? password;
   final Function(String)? onChanged;
   final Widget? suffixIcon;
-  final double fontSize;
   final TextEditingController? controller;
+  final FloatingLabelAlignment? floatingLabelAlignment;
+  final String? labelText;
 
   const TextInputWidget({
     super.key,
-    required this.label,
+    required this.hintText,
     required this.theme,
-    required this.fontSize,
     required this.onChanged,
     this.formatters,
     this.keyboardType,
@@ -33,6 +33,8 @@ class TextInputWidget extends StatelessWidget {
     this.left = 0,
     this.right = 0,
     this.top = 0,
+    this.floatingLabelAlignment,
+    this.labelText,
   });
 
   @override
@@ -66,11 +68,13 @@ class TextInputWidget extends StatelessWidget {
         inputFormatters: formatters ?? [],
         keyboardType: keyboardType ?? TextInputType.number,
         decoration: InputDecoration(
+          floatingLabelAlignment: floatingLabelAlignment,
           suffixIcon: suffixIcon,
           contentPadding: const EdgeInsets.all(15),
           border: InputBorder.none,
-          hintText: label,
+          hintText: hintText,
           hintStyle: theme.hintStyle,
+          labelText: labelText,
         ),
       ),
     );

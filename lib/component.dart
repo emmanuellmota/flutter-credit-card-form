@@ -1,10 +1,14 @@
 part of credit_card_form;
 
 class CreditCardForm extends StatefulWidget {
+  final String? cardNumberHint;
   final String? cardNumberLabel;
+  final String? cardHolderHint;
   final String? cardHolderLabel;
   final bool? hideCardHolder;
+  final String? expiredDateHint;
   final String? expiredDateLabel;
+  final String? cvcHint;
   final String? cvcLabel;
   final Widget? cvcIcon;
   final int? cardNumberLength;
@@ -14,14 +18,19 @@ class CreditCardForm extends StatefulWidget {
   final Function(CreditCardResult) onChanged;
   final CreditCardController? controller;
   final Divider? divider;
+  final FloatingLabelAlignment? floatingLabelAlignment;
   const CreditCardForm({
     super.key,
     this.theme,
     required this.onChanged,
+    this.cardNumberHint,
     this.cardNumberLabel,
+    this.cardHolderHint,
     this.cardHolderLabel,
     this.hideCardHolder = false,
+    this.expiredDateHint,
     this.expiredDateLabel,
+    this.cvcHint,
     this.cvcLabel,
     this.cvcIcon,
     this.cardNumberLength = 16,
@@ -29,6 +38,7 @@ class CreditCardForm extends StatefulWidget {
     this.fontSize = 16,
     this.controller,
     this.divider,
+    this.floatingLabelAlignment,
   });
 
   @override
@@ -89,9 +99,10 @@ class _CreditCardFormState extends State<CreditCardForm> {
         children: [
           TextInputWidget(
             theme: theme,
-            fontSize: widget.fontSize,
+            floatingLabelAlignment: widget.floatingLabelAlignment,
             controller: controllers['card'],
-            label: widget.cardNumberLabel ?? 'Card number',
+            hintText: widget.cardNumberHint ?? 'Card number',
+            labelText: widget.cardNumberLabel,
             bottom: 1,
             formatters: [
               FilteringTextInputFormatter.digitsOnly,
@@ -122,8 +133,9 @@ class _CreditCardFormState extends State<CreditCardForm> {
           if (widget.hideCardHolder == false)
             TextInputWidget(
               theme: theme,
-              fontSize: widget.fontSize,
-              label: widget.cardHolderLabel ?? 'Card holder name',
+              floatingLabelAlignment: widget.floatingLabelAlignment,
+              hintText: widget.cardHolderHint ?? 'Card holder name',
+              labelText: widget.cardHolderLabel,
               controller: controllers['card_holder_name'],
               bottom: 1,
               onChanged: (val) {
@@ -140,8 +152,9 @@ class _CreditCardFormState extends State<CreditCardForm> {
               Expanded(
                 child: TextInputWidget(
                   theme: theme,
-                  fontSize: widget.fontSize,
-                  label: widget.expiredDateLabel ?? 'MM/YY',
+                  floatingLabelAlignment: widget.floatingLabelAlignment,
+                  hintText: widget.expiredDateHint ?? 'MM/YY',
+                  labelText: widget.expiredDateLabel,
                   right: 1,
                   onChanged: (val) {
                     setState(() {
@@ -160,8 +173,9 @@ class _CreditCardFormState extends State<CreditCardForm> {
               Expanded(
                 child: TextInputWidget(
                   theme: theme,
-                  fontSize: widget.fontSize,
-                  label: widget.cvcLabel ?? 'CVC',
+                  floatingLabelAlignment: widget.floatingLabelAlignment,
+                  hintText: widget.cvcHint ?? 'CVC',
+                  labelText: widget.cvcLabel,
                   controller: controllers['cvc'],
                   password: true,
                   onChanged: (val) {
